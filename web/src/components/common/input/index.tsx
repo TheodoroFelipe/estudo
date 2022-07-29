@@ -5,7 +5,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement>{
     onChange?: (value) => void;
     label: string;
     columnClass: string;
-    error?: string;
+    error?: string|undefined;
 }
 
 export const Input: React.FC <InputProps> = ({id, onChange, label, columnClass, error, ...inputProps}: InputProps) => {

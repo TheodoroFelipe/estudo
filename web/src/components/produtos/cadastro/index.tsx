@@ -133,7 +133,7 @@ export const CadastroProdutos: React.FC = () => {
                        value={nome}
                        id={"inputNome"}
                        placeholder={"Digite o nome do produto."}
-                error={errors.nome}/>
+                       error={errors.nome}/>
 
             </div>
 
