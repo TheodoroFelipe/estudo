@@ -45,7 +45,7 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({cliente, onSubmit}) => 
                 <Input id={"cadastro"}
                        name={"cadastro"}
                        onChange={formik.handleChange}
-                       value={formik.values.cadastro}
+                       Value={formik.values.cadastro}
                        label={"Data Cadastro: *"}
                        columnClasses={"is-half"}
                        disabled
@@ -57,7 +57,7 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({cliente, onSubmit}) => 
                        name={"nome"}
                        label={"Nome: *"}
                        onChange={formik.handleChange}
-                       value={formik.values.nome}
+                       defaultValue={formik.values.nome}
                        columnClasses ={"is-full"}
                 autoComplete={"off"}/>
             </div>
@@ -66,7 +66,7 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({cliente, onSubmit}) => 
                 <Input id={"cpf"}
                        name={"cpf"}
                        onChange={formik.handleChange}
-                       value={formik.values.cpf}
+                       defaultValue={formik.values.cpf}
                        label={"CPF: *"}
                        columnClasses={"is-half"}
                        autoComplete={"off"}/>
@@ -74,7 +74,7 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({cliente, onSubmit}) => 
                 <Input id={"dataNascimento"}
                        name={"dataNascimento"}
                        onChange={formik.handleChange}
-                       value={formik.values.dataNascimento}
+                       defaultValue={formik.values.dataNascimento}
                        label={"Data de Nascimento: *"}
                        columnClasses={"is-half"}
                        autoComplete={"off"}/>
@@ -85,8 +85,8 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({cliente, onSubmit}) => 
                        name={"endereco"}
                        label={"Endereço: *"}
                        onChange={formik.handleChange}
-                       value={formik.values.endereco}
-                       columnClasses ={"is-full"}
+                       defaultValue={formik.values.endereco}
+                       columnClasses={"is-full"}
                        autoComplete={"off"}/>
             </div>
 
@@ -94,7 +94,7 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({cliente, onSubmit}) => 
                 <Input id={"email"}
                        name={"email"}
                        onChange={formik.handleChange}
-                       value={formik.values.email}
+                       defaultValue={formik.values.email}
                        label={"E-mail: *"}
                        columnClasses={"is-half"}
                        autoComplete={"off"}/>
@@ -102,10 +102,17 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({cliente, onSubmit}) => 
                 <Input id={"telefone"}
                        name={"telefone"}
                        onChange={formik.handleChange}
-                       value={formik.values.telefone}
+                       defaultValue={formik.values.telefone}
                        label={"Telefone: *"}
                        columnClasses={"is-half"}
                        autoComplete={"off"}/>
+            </div>
+            <div className={"field is-grouped"}>
+                <div className={"control is-link"}>
+                    <button type={"submit"} className={"button"}>
+                        {formik.values.id ? "Atualizar" : "Salvar"}
+                    </button>
+                </div>
             </div>
 
         </form>
