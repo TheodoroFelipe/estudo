@@ -17,6 +17,7 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository repository;
 
+
     @PostMapping //Post mapping para criar novos recursos no servidor; //Request body para dizer que o produto vem em formato json no corpo da requisição enviada
     public ProdutoFormRequest salvar(@RequestBody ProdutoFormRequest produto){ //esse método estará recebendo produto(os dados) do meu front end;
 
