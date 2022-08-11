@@ -1,7 +1,8 @@
-import React from "react";
-import {Cliente} from 'app/models/clientes'
-import {useFormik} from "formik";
-import {Input} from 'components'
+import { Cliente } from 'app/models/clientes'
+import { useFormik } from 'formik'
+import { Input} from 'components'
+import * as Yup from 'yup'
+import {validationScheme} from './validationSchema'
 
 interface ClienteFormProps {
     cliente: Cliente;
@@ -9,112 +10,120 @@ interface ClienteFormProps {
 }
 
 const formScheme: Cliente = {
-    id: '',
     cadastro: '',
     cpf: '',
     dataNascimento: '',
+    email: '',
     endereco: '',
+    id: '',
     nome: '',
-    telefone: '',
-    email: ''
-
+    telefone: ''
 }
 
-export const ClienteForm: React.FC<ClienteFormProps> = ({cliente, onSubmit}) => {
+
+export const ClienteForm: React.FC<ClienteFormProps> = ({
+                                                            cliente,
+                                                            onSubmit
+                                                        }) => {
 
     const formik = useFormik<Cliente>({
-        initialValues: {... formScheme, ... cliente},
+        initialValues: {...formScheme, ...cliente},
         onSubmit,
+        enableReinitialize: true,
+        validationSchema: validationScheme
     })
 
+    //console.log(formik.errors);
+
     return (
-        <form onSubmit={formik.handleSubmit}>{
-            formik.values.id &&
+        <form onSubmit={formik.handleSubmit}>
+            {formik.values.id &&
+                <div className="columns">
+                    <Input id="id"
+                           name="id"
+                           label="Código: "
+                           autoComplete="off"
+                           disabled
+                           columnClasses="is-half"
+                           value={formik.values.id}
+                    />
 
-            <div className={"columns"}>
-
-                <Input id={"id"}
-                       name={"id"}
-                       onChange={formik.handleChange}
-                       value={formik.values.id}
-                       label={"Código: *"}
-                       columnClasses={"is-half"}
-                       disabled
-                       autoComplete={"off"}/>
-
-                <Input id={"cadastro"}
-                       name={"cadastro"}
-                       onChange={formik.handleChange}
-                       Value={formik.values.cadastro}
-                       label={"Data Cadastro: *"}
-                       columnClasses={"is-half"}
-                       disabled
-                       autoComplete={"off"}/>
-            </div>
+                    <Input id="cadastro"
+                           name="cadastro"
+                           label="Data Cadastro: "
+                           autoComplete="off"
+                           disabled
+                           columnClasses="is-half"
+                           value={formik.values.cadastro} />
+                </div>
             }
-            <div className={"columns"}>
-                <Input id={"nome"}
-                       name={"nome"}
-                       label={"Nome: *"}
+            <div className="columns">
+                <Input id="nome"
+                       name="nome"
+                       label="Nome: *"
+                       autoComplete="off"
+                       columnClasses="is-full"
                        onChange={formik.handleChange}
-                       defaultValue={formik.values.nome}
-                       columnClasses ={"is-full"}
-                autoComplete={"off"}/>
+                       value={formik.values.nome}
+                       error={formik.errors.nome}
+                />
             </div>
+            <div className="columns">
+                <Input id="cpf"
+                          name="cpf"
+                          label="CPF: *"
+                          autoComplete="off"
+                          columnClasses="is-half"
+                          onChange={formik.handleChange}
+                          value={formik.values.cpf}
+                          error={formik.errors.cpf}
+                />
 
-            <div className={"columns"}>
-                <Input id={"cpf"}
-                       name={"cpf"}
-                       onChange={formik.handleChange}
-                       defaultValue={formik.values.cpf}
-                       label={"CPF: *"}
-                       columnClasses={"is-half"}
-                       autoComplete={"off"}/>
-
-                <Input id={"dataNascimento"}
-                       name={"dataNascimento"}
-                       onChange={formik.handleChange}
-                       defaultValue={formik.values.dataNascimento}
-                       label={"Data de Nascimento: *"}
-                       columnClasses={"is-half"}
-                       autoComplete={"off"}/>
+                <Input id="dataNascimento"
+                           name="dataNascimento"
+                           label="Data Nascimento: *"
+                           autoComplete="off"
+                           columnClasses="is-half"
+                           onChange={formik.handleChange}
+                           value={formik.values.dataNascimento}
+                       error={formik.errors.dataNascimento}/>
             </div>
-
-            <div className={"columns"}>
-                <Input id={"endereco"}
-                       name={"endereco"}
-                       label={"Endereço: *"}
+            <div className="columns">
+                <Input id="endereco"
+                       name="endereco"
+                       label="Endereço: *"
+                       autoComplete="off"
+                       columnClasses="is-full"
                        onChange={formik.handleChange}
-                       defaultValue={formik.values.endereco}
-                       columnClasses={"is-full"}
-                       autoComplete={"off"}/>
+                       value={formik.values.endereco}
+                       error={formik.errors.endereco}/>
             </div>
-
-            <div className={"columns"}>
-                <Input id={"email"}
-                       name={"email"}
+            <div className="columns">
+                <Input id="email"
+                       name="email"
+                       label="Email: *"
+                       autoComplete="off"
+                       columnClasses="is-half"
                        onChange={formik.handleChange}
-                       defaultValue={formik.values.email}
-                       label={"E-mail: *"}
-                       columnClasses={"is-half"}
-                       autoComplete={"off"}/>
+                       value={formik.values.email}
+                       error={formik.errors.email}/>
 
-                <Input id={"telefone"}
-                       name={"telefone"}
-                       onChange={formik.handleChange}
-                       defaultValue={formik.values.telefone}
-                       label={"Telefone: *"}
-                       columnClasses={"is-half"}
-                       autoComplete={"off"}/>
+                <Input id="telefone"
+                               name="telefone"
+                               label="Telefone: *"
+                               autoComplete="off"
+                               columnClasses="is-half"
+                               onChange={formik.handleChange}
+                               value={formik.values.telefone}
+                       error={formik.errors.telefone}/>
             </div>
-            <div className={"field is-grouped"}>
-                <div className={"control is-link"}>
-                    <button type={"submit"} className={"button"}>
-                        {formik.values.id ? "Atualizar" : "Salvar"}
+            <div className="field is-grouped">
+                <div className="control is-link">
+                    <button type="submit" className="button">
+                        { formik.values.id ? "Atualizar" : "Salvar" }
                     </button>
                 </div>
             </div>
-
         </form>
     )
 }

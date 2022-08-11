@@ -11,7 +11,7 @@ export const Menu: React.FC = () =>{ //estrutura de componente React!!
                 <MenuItem href={"/"} label={"Home"}/>
                 <MenuItem href={"/"} label={"Configuration"}/>
                 <MenuItem href={"/consultas/produtos"} label={"Products"}/>
-                <MenuItem href={"/cadastros/clientes"} label={"Clientes"}/>
+                <MenuItem href={"/consultas/clientes"} label={"Clientes"}/>
                 <MenuItem href={"/"} label={"Sair"}/>
             </ul>
 

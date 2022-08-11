@@ -4,10 +4,24 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58107483-1540-4567-a3cd-fbe75403ad39" name="Changes" comment="checkpoint input de clientes">
+    <list default="true" id="58107483-1540-4567-a3cd-fbe75403ad39" name="Changes" comment="Finalização forms clientes">
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/clientes/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/clientes/listagem/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/consultas/clientes/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/models/clientes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/models/clientes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/models/produtos/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/models/produtos/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientes/cadastro/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientes/cadastro/form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/clientes/cadastro/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientes/cadastro/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientes/listagem/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientes/cadastro/validationSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/input/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/input/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +163,9 @@
       <workItem from="1660041580868" duration="6031000" />
       <workItem from="1660055715109" duration="2770000" />
       <workItem from="1660077313939" duration="2485000" />
+      <workItem from="1660142026619" duration="6050000" />
+      <workItem from="1660168669092" duration="5465000" />
+      <workItem from="1660214508890" duration="7680000" />
     </task>
     <task id="LOCAL-00001" summary="checkpoint input de clientes">
       <created>1660055024057</created>
@@ -190,7 +207,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="novo formulário cadastro cliente" />
     <MESSAGE value="checkpoint input de clientes" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkpoint input de clientes" />
+    <MESSAGE value="Finalização forms clientes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalização forms clientes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
