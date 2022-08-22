@@ -3,9 +3,14 @@ import {Input} from "../../common";
 import {useFormik} from "formik";
 import {useState} from "react";
 import {Cliente} from "../../../app/models/clientes";
-import {DataTable} from "primereact/datatable";
+import {DataTable, DataTablePageParams} from "primereact/datatable";
 import {Column} from "primereact/column";
 import clientes from "../../../pages/cadastros/clientes";
+import {Page} from "../../../app/models/common/page";
+import {event} from "next/dist/build/output/log";
+import {useClienteService} from "../../../app/services/cliente.service";
+import {Simulate} from "react-dom/test-utils";
+import load = Simulate.load;
 
 
 interface ConsultaClientesForm{
@@ -15,19 +20,36 @@ interface ConsultaClientesForm{
 
 export const ListagemClientes: React.FC = () => {
 
-    const [cliente, setCliente] = useState<Cliente[]>([
-        {id: "0", nome: "Fulano", cpf: "000.000.000-98", email: "email@email"}
-    ]);
+    const service = useClienteService();
+    const [loading, setLoading] = useState<boolean>(false)
+    const [cliente, setCliente] = useState<Page<Cliente>>({
+        content: [],
+        first: 0,
+        number: 0,
+        size: 10,
+        totalElements: 0
+        }
+    );
 
 
     const handleSubmit = (filtro: ConsultaClientesForm) => {
-        console.log(filtro)
+        handlePage(null);
     }
 
-    const {handlesubmit: formikSubmit, values: filtro, handleChange} = useFormik<ConsultaClientesForm>({
+    const {handlesubmit: formikSubmit, values: filtro, handleChange} =
+        useFormik<ConsultaClientesForm>({
         onSubmit: handleSubmit,
         initialValues: {nome: '', cpf: ''}
     })
+
+    const handlePage = (event) => {
+        setLoading(true)
+        service.find(filtro.nome, filtro.cpf, event?.page, event?.rows)
+            .then(result => {
+                setCliente({...result, first: event?.first}) //passando resultado e setando o first sendo o que é passado pelo evento;
+            }).finally(() => setLoading(false))
+
+    }
 
     return(
         <Layout titulo={"Clientes"}>
@@ -51,7 +73,12 @@ export const ListagemClientes: React.FC = () => {
                 </div>
                 <div className={"columns"}>
                     <div className={"is-full"}>
-                        <DataTable value={clientes}>
+                        <DataTable value={cliente.content} totalRecords={cliente.totalElements} //quantidade de elementos que existe no banco de dados
+                                   lazy={true} paginator={true}
+                                   first={cliente.first}
+                                   rows={cliente.size}
+                                   onPage={handlePage}
+                                   loading={loading} emptyMessage={"Nenhum registro encontrado."}>
 
                             <Column field={"id"}   header={"Código"} />
                             <Column field={"nome"} header={"Nome"}   />

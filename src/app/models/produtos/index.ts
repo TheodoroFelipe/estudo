@@ -5,6 +5,6 @@ export interface Produto {
     nome?: string;
     descricao?: string;
     preco?: number;
-    sku?: string | undefined;
+    sku?: string;
     cadastro?: string;
 }

@@ -1,6 +1,8 @@
 import {httpClient} from "../http/indexhttp";
 import {Cliente} from "../models/clientes";
 import {AxiosResponse} from "axios";
+import {Page} from "../models/common/page";
+import {data} from "browserslist";
 
 const resourceURL: string = "/api/clientes"
 
@@ -27,11 +29,18 @@ export const useClienteService =() => {
         await httpClient.delete(url)
     }
 
+    const find = async (nome: string, cpf: string, page: number, size: number): Promise<Page<Cliente>> => {
+        const url = `${resourceURL}?nome = ${nome} & cpf = ${cpf} & page = ${page} & size = ${size}`
+        const response: AxiosResponse<Page<Cliente>> = await  httpClient.get(url);
+        return response.data;
+    }
+
     return{
         salvar,
         atualizar,
         carregarCliente,
-        deletar
+        deletar,
+        find
     }
 
  }

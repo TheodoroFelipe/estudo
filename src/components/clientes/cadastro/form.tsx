@@ -2,7 +2,7 @@ import { Cliente } from 'app/models/clientes'
 import { useFormik } from 'formik'
 import { Input} from 'components'
 import * as Yup from 'yup'
-import {validationScheme} from './validationSchema'
+import {ValidationError} from "yup";
 
 interface ClienteFormProps {
     cliente: Cliente;
@@ -30,7 +30,7 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({
         initialValues: {...formScheme, ...cliente},
         onSubmit,
         enableReinitialize: true,
-        validationSchema: validationScheme
+        validationSchema: ValidationError
     })
 
     //console.log(formik.errors);

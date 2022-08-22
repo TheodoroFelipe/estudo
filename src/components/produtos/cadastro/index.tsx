@@ -9,6 +9,7 @@ import error = Simulate.error;
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {formatReal} from 'app/util/money/index'
+import {string} from "yup";
 
 const msgCampoObrigatorio = "Campo obrigatório";
 
@@ -22,7 +23,7 @@ const validationSchema = yup.object().shape({
 
 interface FormErros{
     sku?: string;
-    nome?: string;
+    nome?: string | undefined;
     preco?: string;
     descricao?: string;
 }
@@ -31,8 +32,8 @@ export const CadastroProdutos: React.FC = () => {
 
     const service = useProdutoService()
     const [sku, setSku] = useState<string|undefined>('') //varável para receber o valor de entrada do forms, mesmo nome setado no json;
-    const [preco, setPreco] = useState<string>('')
-    const [nome, setNome] = useState<string|undefined>('')
+    const [preco, setPreco] = useState<string | undefined>('')
+    const [nome, setNome] = useState<string | undefined>('')
     const [descricao, setDescricao] = useState<string|undefined>('')
     const [id, setId] = useState<string|undefined>('')
     const [cadastro, setCadastro] = useState<string|undefined>('')
@@ -127,7 +128,7 @@ export const CadastroProdutos: React.FC = () => {
 
                 <Input label={"SKU *"}
                        columnClass={"is-half"}
-                       onChange={setSku}
+                       onChange={event => setSku(event.target.value)}
                        value={sku}
                        id={"inputSku"}
                        placeholder={"Digite o SKU do produto."}
@@ -135,12 +136,13 @@ export const CadastroProdutos: React.FC = () => {
 
                 <Input label={"Preço *"}
                        columnClass={"is-half"}
-                       onChange={setPreco}
+                       onChange={event => setPreco(event.target.value)}
                        value={preco}
                        id={"inputPreco"}
                        placeholder={"Digite o preço do produto."}
                        maxLenght={16}
-                       error={errors.preco}/>
+                       //error={errors.preco}
+                />
 
             </div>
 
@@ -148,7 +150,7 @@ export const CadastroProdutos: React.FC = () => {
 
                 <Input label={"Nome *"}
                        columnClass={"is-full"}
-                       onChange={setNome}
+                       onChange={event => setNome(event.target.value)}
                        value={nome}
                        id={"inputNome"}
                        placeholder={"Digite o nome do produto."}
